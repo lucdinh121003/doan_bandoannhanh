@@ -1,7 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:doan_bandoannhanh/components/my_button.dart';
 import 'package:doan_bandoannhanh/components/my_textfield.dart';
+import 'package:doan_bandoannhanh/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -18,17 +20,34 @@ class _LoginPageState extends State<LoginPage> {
 
 
   // login
-  void login(){
+  void login() async{
+    //get instance of auth service
+    final _authService = AuthService();
 
+    //try sign in
+    try {
+      await _authService.signInWithEmailPassword(emailController.text, passwordController.text,);
+    }
+    //display nay errors
+    catch (e) {
+      showDialog(
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: Text(e.toString()),
+        ),
+      );
+    }
+  }
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HomePage(),
+  void forgotPw(){
+    showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        title: const Text("Người dùng nhấn quên mật khẩu"),
       ),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,8 +92,9 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 25),
           //sign button
           MyButton(
-            text:"Sign In", onTap: login,
-            ),
+            onTap: login,
+            text:"Sign In",             
+          ),
 
           const SizedBox(height: 25),
           //register

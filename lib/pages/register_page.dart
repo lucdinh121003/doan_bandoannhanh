@@ -1,4 +1,5 @@
 import 'package:doan_bandoannhanh/components/my_button.dart';
+import 'package:doan_bandoannhanh/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../components/my_textfield.dart';
@@ -16,6 +17,33 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController passwordController =TextEditingController();
 
+  final TextEditingController confirmPasswordController =TextEditingController();
+  final _authService = AuthService();
+
+  Future<void> register() async {
+
+    // get auth service
+
+    if(passwordController.value.text != confirmPasswordController.value.text){
+      showDialog(
+        context: context, 
+        builder: (context)=> const AlertDialog(
+          title: Text("Mật khẩu không khớp!"),
+        ),
+      );
+    }
+    try {
+      await _authService.signUpWithEmailPassword(emailController.value.text, passwordController.value.text,);
+    }catch(e){
+      print("e ${e}");
+      // showDialog(
+      //   context: context, 
+      //   builder: (context)=> AlertDialog(
+      //     title: Text(e.toString()),
+      //   ),
+      // );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
           //confirm password
           MyTextField(
-            controller: passwordController,
+            controller: confirmPasswordController,
             hintText: "Nhập lại mật khẩu",
             obscureText: true,
           ),
@@ -69,7 +97,9 @@ class _RegisterPageState extends State<RegisterPage> {
           const SizedBox(height: 25),
           //sign button
           MyButton(
-            text:"Đăng kí", onTap: () {},
+            text:"Đăng kí", onTap: () {
+              register();
+            },
             ),
 
           const SizedBox(height: 25),

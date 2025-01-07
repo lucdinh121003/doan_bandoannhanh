@@ -1,4 +1,6 @@
+
 import 'package:doan_bandoannhanh/components/my_drawer%20_title.dart';
+import 'package:doan_bandoannhanh/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/settings_page.dart';
@@ -6,6 +8,10 @@ import '../pages/settings_page.dart';
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
+  void logout(){
+    final authService = AuthService();
+    authService.signOut();
+  }
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -58,7 +64,10 @@ class MyDrawer extends StatelessWidget {
             MyDrawerTile(
               text: "Đăng Xuất",
               icon: Icons.logout, 
-              onTap: (){},
+              onTap: (){
+                logout();
+                Navigator.pop(context);
+              },
             ),
 
             const SizedBox(height: 25),

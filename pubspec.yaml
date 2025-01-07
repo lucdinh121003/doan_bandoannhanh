@@ -7,9 +7,15 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  collection: ^1.18.0
   flutter:
     sdk: flutter
+  flutter_credit_card: ^4.0.1
   provider: ^6.1.2
+  intl: ^0.20.1
+  firebase_core: ^3.9.0
+  firebase_auth: ^5.3.4
+  cloud_firestore: ^5.6.0
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +30,3 @@ flutter:
     - lib/images/salads/
     - lib/images/foods/
     - lib/images/desserts/
-  
-
-  
