@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController confirmPasswordController =TextEditingController();
 
 
-  // login
+  // đăng nhậpnhập
   void login(){
 
 
@@ -45,9 +45,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           const SizedBox(height: 25),
-          //message
+          //TitleApp
           Text(
-            "Gif do",
+            "Đồ ăn nhanh",
             style: TextStyle(
               fontSize: 16,
               color: Theme.of(context).colorScheme.inversePrimary,
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           const SizedBox(height: 25),
-          //password
+          //mật khẩu
           MyTextField(
             controller: passwordController,
             hintText: "Mật Khẩu",
@@ -71,20 +71,20 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
           const SizedBox(height: 25),
-          //sign button
+          //nút đăng nhập
           MyButton(
-            text:"Sign In", onTap: login,
+            text:"Đăng nhập", onTap: login,
             ),
 
           const SizedBox(height: 25),
-          //register
+          //đăng kí 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: widget.onTap,
                 child: Text(
-                  "Đăng Kí ngay",
+                  "Đăng kí ngay",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary,
                     fontWeight: FontWeight.bold,

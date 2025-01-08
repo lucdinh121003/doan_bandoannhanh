@@ -41,17 +41,17 @@ class _HomePageState extends State<HomePage>
 
   List<Widget> getFoodInThisCategory(List<Food> fullMenu) {
     return FoodCategory.values.map((category) {
-      //get food menu
+      //lấy thực đơn món ăn
       List<Food> categoryMenu = _filterMenuCategory(category, fullMenu);
 
       return ListView.builder(
         itemCount: categoryMenu.length,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          //get individual food
+          //lấy từng món ăn
           final food = categoryMenu[index];
 
-          //return food tile UI
+          //trả về giao diện món ăn đó
           return FoodTile(
             food: food,
             onTap: () => Navigator.push(
@@ -81,10 +81,10 @@ class _HomePageState extends State<HomePage>
                   endIndent: 25,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-                // my current location
+                // vị trí hiện tại
                 const MyCurrentLocation(),
 
-                //destination box
+                //điểm đến
                 const MyDescriptionBox(),
               ],
             ),

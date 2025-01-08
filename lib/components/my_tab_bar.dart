@@ -9,13 +9,14 @@ class MyTabBar extends StatelessWidget {
     required this.tabController,
   });
 
-  List<Tab> _buildCategorytab(){
-    return FoodCategory.values.map((category) {
-      return Tab(
-        text: category.toString().split('.').last,
-      );
-    }).toList();
-  }
+  List<Tab> _buildCategorytab() {
+  return FoodCategory.values.map((category) {
+    return Tab(
+      text: category.displayName,
+    );
+  }).toList();
+}
+
   
 
   @override

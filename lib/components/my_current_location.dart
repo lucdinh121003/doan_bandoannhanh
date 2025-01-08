@@ -14,7 +14,7 @@ class MyCurrentLocation extends StatelessWidget {
         ),
       ),
       actions: [
-        //cancel button
+        //nút hủy
         MaterialButton(
           onPressed: ()=> Navigator.pop(context),
           child: const Text('Cancel'),
@@ -43,7 +43,7 @@ class MyCurrentLocation extends StatelessWidget {
             onTap: ()=> openLocationSearchBox(context),
             child: Row(
               children: [
-                //address
+                //địa chỉ
                 Text(
                 '63/36 Linh Dong Thu Duc',
                 style: TextStyle(
@@ -52,7 +52,7 @@ class MyCurrentLocation extends StatelessWidget {
                   ),
                 ),
                   
-                //drop down menu
+                //drop down của thực đơn 
                 const Icon(Icons.keyboard_arrow_down_rounded),
               ],
             ),

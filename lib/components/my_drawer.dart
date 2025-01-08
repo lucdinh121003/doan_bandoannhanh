@@ -30,14 +30,14 @@ class MyDrawer extends StatelessWidget {
             ),
 
 
-            //home list title
+            //tiêu đề của trang chủ
             MyDrawerTile(
               text: "Trang Chủ",
               icon: Icons.home, 
               onTap: ()=> Navigator.pop(context),
             ),
 
-            //setting list title
+            //tiêu đề của trang cài đặt
             MyDrawerTile(
               text: "Cài Đặt",
               icon: Icons.settings, 
@@ -54,7 +54,7 @@ class MyDrawer extends StatelessWidget {
             
             const Spacer(),
 
-            //logout list title
+            //đăng xuất 
             MyDrawerTile(
               text: "Đăng Xuất",
               icon: Icons.logout, 

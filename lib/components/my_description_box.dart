@@ -5,7 +5,7 @@ class MyDescriptionBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //text style
+    //kiểu chữ 
     var myPrimaryTextStyle = TextStyle(
       color: Theme.of(context).colorScheme.inversePrimary
     );
@@ -23,19 +23,19 @@ class MyDescriptionBox extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          //delivery fee
+          //Phí giao hàng
           Column(
             children: [
-              Text('\$0.99', style: mySecondaryTextStyle,),
-              Text('Delivery fee',style: mySecondaryTextStyle,),
+              Text('\20.000', style: mySecondaryTextStyle,),
+              Text('Phí giao hàng',style: mySecondaryTextStyle,),
             ],
           ),
 
-          //delivery time
+          //thời gian giao hàng 
           Column(
             children: [
-              Text('15-30 min',style: myPrimaryTextStyle,),
-              Text('Delivery time',style: mySecondaryTextStyle,),
+              Text('15-30 phút',style: myPrimaryTextStyle,),
+              Text('Thời gian giao hàng',style: mySecondaryTextStyle,),
             ],
           ),
         ],

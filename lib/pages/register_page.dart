@@ -32,7 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
 
           const SizedBox(height: 25),
-          //message
+          //thông báo 
           Text(
             "Tạo tài khoản ",
             style: TextStyle(
@@ -50,7 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
 
           const SizedBox(height: 25),
-          //password
+          //mật khâu 
           MyTextField(
             controller: passwordController,
             hintText: "Mật Khẩu",
@@ -59,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
           const SizedBox(height: 25),
 
-          //confirm password
+          //nhập lại mật khẩu 
           MyTextField(
             controller: passwordController,
             hintText: "Nhập lại mật khẩu",
@@ -67,13 +67,13 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
 
           const SizedBox(height: 25),
-          //sign button
+          //nút đăng kí 
           MyButton(
             text:"Đăng kí", onTap: () {},
             ),
 
           const SizedBox(height: 25),
-          //register
+          //đăng nhập
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
