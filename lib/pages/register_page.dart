@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:doan_bandoannhanh/components/my_button.dart';
 import 'package:doan_bandoannhanh/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +15,34 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController emailController =TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  
 
-  final TextEditingController passwordController =TextEditingController();
+  void register() async {
 
-  final TextEditingController confirmPasswordController =TextEditingController();
-  final _authService = AuthService();
-
-  Future<void> register() async {
-
+    final _authService = AuthService();
     // get auth service
 
-    if(passwordController.value.text != confirmPasswordController.value.text){
+    if(passwordController.text == confirmPasswordController.text){
+      try {
+        await _authService.signUpWithEmailPassword(
+          emailController.text, 
+          passwordController.text,
+          );
+      } 
+      catch(e){
+        showDialog(
+          context: context, 
+          builder: (context)=> AlertDialog(
+            title: Text(e.toString()),
+          ),
+        );
+      }
+      
+    }
+    else{
       showDialog(
         context: context, 
         builder: (context)=> const AlertDialog(
@@ -32,17 +50,7 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       );
     }
-    try {
-      await _authService.signUpWithEmailPassword(emailController.value.text, passwordController.value.text,);
-    }catch(e){
-      print("e ${e}");
-      // showDialog(
-      //   context: context, 
-      //   builder: (context)=> AlertDialog(
-      //     title: Text(e.toString()),
-      //   ),
-      // );
-    }
+  
   }
   @override
   Widget build(BuildContext context) {

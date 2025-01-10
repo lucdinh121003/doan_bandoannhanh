@@ -7,252 +7,251 @@ import 'food.dart';
 import 'cart_item.dart';
 
 class Restaurant extends ChangeNotifier {
-  // list of food menu
+  // danh sách thực đơn
   final List<Food> _menu = [
-    // Food
-    Food(
-      name: "Banh mi",
-      description: "Banh mi ngon tuyet voi.",
+    // đồ ăn 
+   Food(
+      name: "Bánh mì",
+      description: "Bánh mì là bánh giòn mềm, nhân đa dạng hấp dẫn.",
       imagePath: "lib/images/foods/banhmi.webp",
-      price: 0.99,
+      price: 15000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Thap cam", price: 0.99),
-        Addon(name: "1 trung", price: 1.99),
-        Addon(name: "2 trung", price: 2.99),
+        Addon(name: "Thập cẩm", price: 15000),      
+        Addon(name: "1 trứng", price: 20000),
+        Addon(name: "2 trứng", price: 25000),
       ],
     ),
 
     Food(
-      name: "Ga ran",
-      description: "Ga ran ngon tuyet voi.",
-      imagePath: "lib/images/foods/garan.png",
-      price: 0.99,
+      name: "Gà rán",
+      description: "Gà giòn rụm bên ngoài, mềm ngọt bên trong.",
+      imagePath: "lib/images/foods/garan.webp",
+      price: 25000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Combo", price: 0.99),
-        Addon(name: "Combo 2", price: 1.99),
-        Addon(name: "Combo 3", price: 2.99),
+        Addon(name: "Combo", price: 25000),
+        Addon(name: "Combo 2", price: 49999),
+        Addon(name: "Combo 3", price: 99999),
       ],
     ),
 
     Food(
-      name: "Com cuon",
-      description: "Com cuon ngon tuyet voi.",
+      name: "Cơm cuộn",
+      description: "Cơm cuộn rau thịt, gói trong lá rong biển.",
       imagePath: "lib/images/foods/comcuon.webp",
-      price: 0.99,
+      price: 10000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Ca hoi", price: 0.99),
-        Addon(name: "Ca ngu", price: 1.99),
-        Addon(name: "Thap cam", price: 2.99),
+        Addon(name: "Cá hồi", price: 10000),
+        Addon(name: "Cá ngừ", price: 15000),
+        Addon(name: "Thập cẩm", price: 20000),
       ],
     ),
 
     Food(
-      name: "Khoai tay chien",
-      description: "Khoai tay chien ngon tuyet voi.",
-      imagePath: "lib/images/foods/khoaitaychien.png",
-      price: 0.99,
+      name: "Khoai tây chiên ",
+      description: "Khoai giòn vàng, thơm ngon, chấm cùng sốt đậm.",
+      imagePath: "lib/images/foods/khoaitaychien.webp",
+      price: 15000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Thap cam", price: 0.99),
-        Addon(name: "2 trung", price: 1.99),
-        Addon(name: "1 trung", price: 2.99),
+        Addon(name: "Combo 1", price: 15000),
+        Addon(name: "Combo 2", price: 25000),
+        Addon(name: "Combo 3", price: 35000),
       ],
     ),
-    // drinks
+    // nc uong 
 
     Food(
       name: "7up",
-      description: "7up ngon tuyet voi.",
+      description: "Nước ngọt chanh vị nhẹ, sảng khoái mát lạnh.",
       imagePath: "lib/images/drinks/7up.png",
-      price: 0.99,
+      price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tay", price: 0.99),
-        Addon(name: "2 tay", price: 1.99),
-        Addon(name: "3 tay", price: 2.99),
+        Addon(name: "1 tẩy", price: 15000),  
+        Addon(name: "2 tẩy", price: 17000),
+        Addon(name: "3 tẩy", price: 20000),
       ],
     ),
 
     Food(
-      name: "coca",
-      description: "coca ngon tuyet voi.",
+      name: "Coca",
+      description: "Nước ngọt có ga, vị đậm đà, giải khát tốt.",
       imagePath: "lib/images/drinks/coca.png",
-      price: 0.99,
+      price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tay", price: 0.99),
-        Addon(name: "2 tay", price: 1.99),
-        Addon(name: "3 tay", price: 2.99),
+        Addon(name: "1 tẩy", price: 15000),
+        Addon(name: "2 tẩy", price: 17000),
+        Addon(name: "3 tẩy", price: 20000),
       ],
     ),
 
     Food(
-      name: "pepsi",
-      description: "pepsi ngon tuyet voi.",
+      name: "Pepsi",
+      description: "Đồ uống có ga, hương vị mạnh, rất sảng khoái.",
       imagePath: "lib/images/drinks/pepsi.png",
-      price: 0.99,
+      price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tay", price: 0.99),
-        Addon(name: "2 tay", price: 1.99),
-        Addon(name: "3 tay", price: 2.99),
+        Addon(name: "1 tẩy", price: 15000),
+        Addon(name: "2 tẩy", price: 17000),
+        Addon(name: "3 tẩy", price: 20000),  
       ],
     ),
 
     Food(
-      name: "chanh day",
-      description: "chanh day ngon tuyet voi.",
+      name: "Chanh day",
+      description: "Quả chua ngọt, hương thơm nồng, giải nhiệt tốt.",
       imagePath: "lib/images/drinks/chanhday.png",
-      price: 0.99,
+      price: 20000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tay", price: 0.99),
-        Addon(name: "2 tay", price: 1.99),
-        Addon(name: "3 tay", price: 2.99),
+        Addon(name: "Chua", price: 20000),
+        Addon(name: "Chua vừa", price: 25000),
+        Addon(name: "Ngọt", price: 30000),
       ],
     ),
-    // salads
+    // salad 
     Food(
-      name: "ca hoi",
-      description: "ngon tuyet voi.",
+      name: "Cá hồi ",
+      description: "Cá hồi tươi, rau xanh, sốt chua ngọt hòa quyện.",
       imagePath: "lib/images/salads/cahoi.webp",
-      price: 0.99,
+      price: 25000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 25000),
+        Addon(name: "Vừa", price: 30000),
+        Addon(name: "Lớn", price: 35000),
       ],
     ),
 
     Food(
-      name: "ca ngu",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/salads/cangu.jpg",
-      price: 0.99,
+      name: "Cá ngừ ",
+      description: "Cá ngừ dai ngon, dùng làm salad hoặc ăn sống.",
+      imagePath: "lib/images/salads/cangu.webp",
+      price: 25000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 25000),
+        Addon(name: "Vừa", price: 30000),
+        Addon(name: "Lớn", price: 35000),
       ],
     ),
 
     Food(
-      name: "hoa qua",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/salads/hoaqua.jpg",
-      price: 0.99,
+      name: "Hoa quả",
+      description: "Trái cây tươi đa dạng.",
+      imagePath: "lib/images/salads/hoaqua.webp",
+      price: 15000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 15000),
+        Addon(name: "Vừa", price: 20000),  
+        Addon(name: "Lớn", price: 25000),  
       ],
     ),
 
     Food(
       name: "Mix",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/salads/tron.jpg",
-      price: 0.99,
+      description: "Salad nhiều loại.",
+      imagePath: "lib/images/salads/mix.webp",
+      price: 30000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 30000),
+        Addon(name: "Vừa", price: 35000),  
+        Addon(name: "Lớn", price: 40000),
       ],
     ),
-    //desserts
+    // món tráng miệng
     Food(
-      name: "kem chuoi",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/desserts/kemchuoi.jpg",
-      price: 0.99,
+      name: "Kem chuối",
+      description: "Kem chuối ngọt béo, thêm lạc giòn bùi thơm.",
+      imagePath: "lib/images/desserts/kemchuoi.webp",
+      price: 10000,  
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 10000),
+        Addon(name: "Vừa", price: 13000),
+        Addon(name: "Lớn", price: 15000),
       ],
     ),
 
     Food(
-      name: "kem dau",
-      description: "ngon tuyet voi.",
+      name: "Kem dâu",
+      description: "Kem dâu hồng, chua ngọt nhẹ, mùi thơm hấp dẫn.",
       imagePath: "lib/images/desserts/kemdau.webp",
-      price: 0.99,
+      price: 17000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 17000),
+        Addon(name: "Vừa", price: 20000),
+        Addon(name: "Lớn", price: 25000),
       ],
     ),
 
     Food(
-      name: "kem sau rieng",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/desserts/kemsaurieng.jpg",
-      price: 0.99,
+      name: "Kem sầu riêng",
+      description: "Kem sầu riêng béo ngậy, hương vị đặc trưng mạnh.",
+      imagePath: "lib/images/desserts/kemsaurieng.webp",
+      price: 20000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 20000),
+        Addon(name: "Vừa", price: 25000),
+        Addon(name: "Lớn", price: 30000),
       ],
     ),
 
     Food(
-      name: "kem xoai",
-      description: "ngon tuyet voi.",
-      imagePath: "lib/images/desserts/kemxoai.jpg",
-      price: 0.99,
+      name: "Kem xoài",
+      description: "Kem xoài vàng, vị ngọt thanh, thơm mát lạnh.",
+      imagePath: "lib/images/desserts/kemxoai.webp",
+      price: 15000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "nho", price: 0.99),
-        Addon(name: "vua", price: 1.99),
-        Addon(name: "lon", price: 2.99),
+        Addon(name: "Nhỏ", price: 15000),
+        Addon(name: "Vừa", price: 20000),
+        Addon(name: "Lớn", price: 25000),
       ],
     ),
   ];
 
-  // user cart
+  // giỏ hàng người dùng
   final List<CartItem> _cart = [];
 
-  // delivery address (which user can change/update)
+  // địa chỉ giao hàng (người dùng có thể thay đổi/cập nhật)
   String _deliveryAddress = 'Q9 Thủ Đức TP.Hồ Chí Minh';
   
-  // G E T T E R S
+  
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
   String get deliveryAddress => _deliveryAddress;
 
-  // O P E R A T I O N S
 
   
 
-  // add to cart
+  // thêm vào giỏ 
   void addToCart(Food food, List<Addon> selectedAddons) {
-    //see if there is a cart item alrealy with  the same food and selected addons
+    //xem đã có mặt hàng nào trong giỏ hàng có cùng loại thực phẩm đã chọn chưa
     CartItem? cartItem = _cart.firstWhereOrNull((item) {
-      //check if the food items are the same
+      //kiểm tra xem các món ăn có giống nhau không
       bool isSameFood = item.food == food;
-      //check if the list of selected addons are the same
+      //kiểm tra xem danh sách các món thêm gì đó đã chọn có giống nhau không
       bool isSameAddons =
           ListEquality().equals(item.selectedAddons, selectedAddons);
 
       return isSameFood && isSameAddons;
     });
-    // if item already exists, increase it  quantity
+    // nếu mặt hàng đã tồn tại, hãy tăng số lượng
     if (cartItem != null) {
       cartItem.quantity++;
     }
 
-    // otherwise, add a new cart item to the cart
+    // nếu không, hãy thêm một mặt hàng mới vào giỏ hàng
     else {
       _cart.add(
         CartItem(
@@ -264,7 +263,7 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
-  // remove from cart
+  // xóa món trong giỏ hàng 
   void removeFromCart(CartItem cartItem) {
     int cartIndex = _cart.indexOf(cartItem);
 
@@ -278,9 +277,9 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
-  // get total price of cart
+  // lấy tổng giá của giỏ hàng
   double getTotalPrice() {
-    double total = 0.0;
+    double total = 0;
 
     for (CartItem cartItem in _cart) {
       double itemTotal = cartItem.food.price;
@@ -295,7 +294,7 @@ class Restaurant extends ChangeNotifier {
     return total;
   }
 
-  // get total number of item in cart
+  // lấy tổng số lượng mặt hàng trong giỏ hàng
   int getTotalItemCount() {
     int totalItemCount = 0;
 
@@ -306,25 +305,25 @@ class Restaurant extends ChangeNotifier {
     return totalItemCount;
   }
 
-  // clear cart
+  // clear giỏ hàng
   void clearCart() {
     _cart.clear();
     notifyListeners();
   }
 
-  //update delivery address
+  //cập nhật địa chỉ giao hàng
   void updateDeliveryAddress(String newAddress){
     _deliveryAddress = newAddress;
     notifyListeners();
   }
 
-  //generate a receipt
+  //tạo biên lai
   String displayCartReceipt(){
     final receipt = StringBuffer();
     receipt.writeln("Here's your receipt.");
     receipt.writeln();
 
-    // format the date to include up to seconds only
+    // định dạng ngày 
     String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
 
     receipt.writeln(formattedDate);

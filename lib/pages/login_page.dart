@@ -14,40 +14,53 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController emailController =TextEditingController();
-  final TextEditingController passwordController =TextEditingController();
-  final TextEditingController confirmPasswordController =TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
 
-  // login
-  void login() async{
-    //get instance of auth service
+  // đăng nhập
+  void login() async {
+
     final _authService = AuthService();
 
-    //try sign in
-    try {
-      await _authService.signInWithEmailPassword(emailController.text, passwordController.text,);
+    // Kiểm tra dữ liệu
+    if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          title: Text("Thông báo"),
+          content: Text("Vui lòng nhập đầy đủ email và mật khẩu."),
+        ),
+      );
+      return;
     }
-    //display nay errors
+    try {
+      await _authService.signInWithEmailPassword(
+        emailController.text,
+        passwordController.text,
+      );
+    }    
     catch (e) {
       showDialog(
-        context: context, 
+        context: context,
         builder: (context) => AlertDialog(
-          title: Text(e.toString()),
+          title: const Text("Lỗi"),
+          content: Text(e.toString()),
         ),
       );
     }
   }
 
-  void forgotPw(){
+  void forgotPw() {
     showDialog(
-      context: context, 
+      context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Theme.of(context).colorScheme.background,
-        title: const Text("Người dùng nhấn quên mật khẩu"),
+        title: const Text("QQuên mật khẩu"),
       ),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,65 +69,63 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          //logo
-          Icon(
-            Icons.lock_open_rounded,
-            size: 100,
-            color: Theme.of(context).colorScheme.inversePrimary,
-          ),
-
-          const SizedBox(height: 25),
-          //message
-          Text(
-            "Gif do",
-            style: TextStyle(
-              fontSize: 16,
+            //logo
+            Icon(
+              Icons.lock_open_rounded,
+              size: 100,
               color: Theme.of(context).colorScheme.inversePrimary,
             ),
-          ),
 
-          const SizedBox(height: 25),
-          //email
-          MyTextField(
-            controller: emailController,
-            hintText: "Email",
-            obscureText: false,
-          ),
+            const SizedBox(height: 25),
+            //TitleApp
+            Text(
+              "Đồ ăn nhanh",
+              style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).colorScheme.inversePrimary,
+              ),
+            ),
 
-          const SizedBox(height: 25),
-          //password
-          MyTextField(
-            controller: passwordController,
-            hintText: "Mật Khẩu",
-            obscureText: true,
-          ),
+            const SizedBox(height: 25),
+            //email
+            MyTextField(
+              controller: emailController,
+              hintText: "Email",
+              obscureText: false,
+            ),
 
-          const SizedBox(height: 25),
-          //sign button
-          MyButton(
-            onTap: login,
-            text:"Sign In",             
-          ),
+            const SizedBox(height: 25),
+            //mật khẩu
+            MyTextField(
+              controller: passwordController,
+              hintText: "Mật Khẩu",
+              obscureText: true,
+            ),
 
-          const SizedBox(height: 25),
-          //register
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: widget.onTap,
-                child: Text(
-                  "Đăng Kí ngay",
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                    fontWeight: FontWeight.bold,
+            const SizedBox(height: 25),
+          //nút đăng nhập
+            MyButton(
+              text:"Đăng nhập", 
+              onTap: login,
+            ),
+
+            const SizedBox(height: 25),
+            //register
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: widget.onTap,
+                  child: Text(
+                    "Đăng Kí ngay",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.inversePrimary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  
-                ),
-              )
-            ],
-          )
-
+                )
+              ],
+            )
           ],
         ),
       ),

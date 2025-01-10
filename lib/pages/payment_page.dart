@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'delivery_progress_page.dart';
@@ -113,15 +115,7 @@ class _PaymentPageState extends State<PaymentPage> {
       body: 
       Builder(
           builder: (BuildContext context) {
-            return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: ExactAssetImage(
-                    isLightTheme ? 'assets/bg-light.png' : 'assets/bg-dark.png',
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
+            return Container(            
               child: SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -156,20 +150,11 @@ class _PaymentPageState extends State<PaymentPage> {
                           ? Colors.white
                           : Colors.black,
                       backgroundImage:
-                          useBackgroundImage ? 'assets/card_bg.png' : null,
+                          useBackgroundImage ? null : null,
                       isSwipeGestureEnabled: true,
                       onCreditCardWidgetChange:
                           (CreditCardBrand creditCardBrand) {},
-                      customCardTypeIcons: <CustomCardTypeIcon>[
-                        CustomCardTypeIcon(
-                          cardType: CardType.mastercard,
-                          cardImage: Image.asset(
-                            'assets/mastercard.png',
-                            height: 48,
-                            width: 48,
-                          ),
-                        ),
-                      ],
+                    
                     ),
                     Expanded(
                       child: SingleChildScrollView(

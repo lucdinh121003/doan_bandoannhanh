@@ -13,8 +13,11 @@ class AuthService {
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
     // try sign user in
     try {
-      UserCredential userCredential = await _firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = 
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, 
+        password: password,
+      );
       return userCredential;
     }
     //catch any errors
@@ -24,10 +27,15 @@ class AuthService {
   }
 
   //sign up
-  Future<UserCredential> signUpWithEmailPassword(String email, String password) async {
+  Future<UserCredential> signUpWithEmailPassword(
+      String email, password) async {
     // try sign user up
     try {
-      UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = 
+      await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email, 
+        password: password,
+      );
 
       return userCredential;
     } on FirebaseAuthException catch (e) {
@@ -35,8 +43,13 @@ class AuthService {
     }
   }
 
-  // sign out 
-  Future<void> signOut() async{
+  // sign out
+  Future<void> signOut() async {
     return await _firebaseAuth.signOut();
+  }
+
+  static Future<bool> isLoggedIn() async{
+    var user = FirebaseAuth.instance.currentUser;
+    return user != null;
   }
 }

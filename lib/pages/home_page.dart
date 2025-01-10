@@ -7,6 +7,7 @@ import 'package:doan_bandoannhanh/components/my_tab_bar.dart';
 import 'package:doan_bandoannhanh/models/food.dart';
 import 'package:doan_bandoannhanh/models/restaurant.dart';
 import 'package:doan_bandoannhanh/pages/food_page.dart';
+import 'package:doan_bandoannhanh/services/notification/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,10 +20,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  //tab controller
+
   late TabController tabController;
   @override
   void initState() {
+      PushNotifications.getDeviceToken();
     super.initState();
     tabController =
         TabController(length: FoodCategory.values.length, vsync: this);
@@ -40,17 +42,17 @@ class _HomePageState extends State<HomePage>
 
   List<Widget> getFoodInThisCategory(List<Food> fullMenu) {
     return FoodCategory.values.map((category) {
-      //get food menu
+      //lấy thực đơn món ăn
       List<Food> categoryMenu = _filterMenuCategory(category, fullMenu);
 
       return ListView.builder(
         itemCount: categoryMenu.length,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
-          //get individual food
+          //lấy từng món ăn
           final food = categoryMenu[index];
 
-          //return food tile UI
+          //trả về giao diện món ăn đó
           return FoodTile(
             food: food,
             onTap: () => Navigator.push(
@@ -80,10 +82,10 @@ class _HomePageState extends State<HomePage>
                   endIndent: 25,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
-                // my current location
+                // vị trí hiện tại
                 MyCurrentLocation(),
 
-                //destination box
+                //điểm đến
                 const MyDescriptionBox(),
               ],
             ),
