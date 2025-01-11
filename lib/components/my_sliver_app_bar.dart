@@ -1,4 +1,4 @@
-import 'package:doan_bandoannhanh/pages/cart_page.dart';
+import 'package:doan_bandoannhanh/components/my_cart_icon.dart';
 import 'package:flutter/material.dart';
 
 class MySliverAppBar extends StatelessWidget {
@@ -18,20 +18,9 @@ class MySliverAppBar extends StatelessWidget {
       collapsedHeight: 120,
       floating: false,
       pinned: true,
-      actions: [
-        //nút giỏ hàng
-        IconButton(
-          onPressed: () {
-            // chuyển đến trang giỏ hàng
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CartPage(),
-              ),
-            );
-          },
-          icon: const Icon(Icons.shopping_cart),
-        ),
+      actions: const [
+        // Nút giỏ hàng
+        MyCartIcon(),
       ],
       backgroundColor: Theme.of(context).colorScheme.surface,
       foregroundColor: Theme.of(context).colorScheme.inversePrimary,
