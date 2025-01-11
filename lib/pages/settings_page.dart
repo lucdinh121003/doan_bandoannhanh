@@ -26,13 +26,14 @@ import 'package:provider/provider.dart';
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Dark Mode",
+                  "Chế Độ Tối",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.inversePrimary,
                   ),
                 ),
-            
+
+                // chuyển đổi
                 CupertinoSwitch(
                   value: Provider.of<ThemeProvider>(context,listen: false).isDarkMode,
                    onChanged: (value)=>

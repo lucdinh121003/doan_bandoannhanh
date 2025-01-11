@@ -2,12 +2,12 @@
 
 
 class Food{
-  final String name; // cheese burger
-  final String description; // a burger full of cheese
-  final String imagePath; // lib/images/cheese_burger.png
-  final double price; // 4.99
-  final FoodCategory category; // burger
-  final List<Addon> availableAddons; // [extra cheese, sauce]
+  final String name; // tên 
+  final String description; // mô tả 
+  final String imagePath; // ảnh 
+  final double price; // giá 
+  final FoodCategory category; // loại 
+  final List<Addon> availableAddons; // thêm gì đó như thêm rau, thêm nước sốt...
 
   Food({
     required this.name,
@@ -19,13 +19,31 @@ class Food{
   });
 }
 
-// Food categories
+// loai thuc an
 enum FoodCategory {
   foods,
   salads,
   desserts,
   drinks,
 }
+
+extension FoodCategoryExtension on FoodCategory {
+  String get displayName {
+    switch (this) {
+      case FoodCategory.foods:
+        return 'Món ăn';
+      case FoodCategory.salads:
+        return 'Salad';
+      case FoodCategory.desserts:
+        return 'Tráng miệng';
+      case FoodCategory.drinks:
+        return 'Đồ uống';
+      default:
+        return '';
+    }
+  }
+}
+
 
 
 class Addon {

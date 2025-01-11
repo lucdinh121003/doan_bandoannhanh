@@ -9,6 +9,10 @@ class FoodTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Định dạng giá (có thể chọn cách dùng toStringAsFixed hoặc intl)
+    String formattedPrice = food.price.toStringAsFixed(0); 
+
     return Column(
       children: [
         GestureDetector(
@@ -17,29 +21,25 @@ class FoodTile extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
-                //text food details
+                // Chi tiết về món ăn
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(food.name),
-                      Text('\$' + food.price.toString(),
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.primary)),
-                      const SizedBox(height: 10),
                       Text(
-                        food.description,
+                        "$formattedPrice VND", // Hiển thị giá đã được định dạng
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                            color: Theme.of(context).colorScheme.primary),
                       ),
+                      const SizedBox(height: 10),
                       Text(food.description),
                     ],
                   ),
                 ),
 
                 const SizedBox(width: 15),
-                //food image
+                // Ảnh món ăn
 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),

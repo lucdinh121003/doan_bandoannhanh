@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class CRUDService {
-  // save fcm token to firstore
+  // lưu mã thông báo fcm vào Firstore
   static Future saveUserToken(String token) async {
     User? user = FirebaseAuth.instance.currentUser;
     Map<String, dynamic> data = {

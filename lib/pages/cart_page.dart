@@ -12,37 +12,37 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Restaurant>(
       builder: (context, restaurant, child) {
-        //cart
+        //Giỏ hàng của người dùng
         final userCart = restaurant.cart;
 
-        //scaffold UI
+        //trả về giao diện giỏ hàng
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Cart"),
+            title: const Text("Giỏ Hàng"),
             backgroundColor: Colors.transparent,
             foregroundColor: Theme.of(context).colorScheme.inversePrimary,
             actions: [
-              //clear cart button
+              //nút xóa giỏ hàng
               IconButton(
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
                       title: const Text(
-                          "Are you sure you want to clear the cart?"),
+                          "Bạn có chắc muốn xóa khỏi giỏ hàng?"),
                       actions: [
-                        //cancel button
+                        //nút hủy 
                         TextButton(
                           onPressed: () => Navigator.pop(context),
-                          child: Text("Cancel"),
+                          child: Text("Hủy"),
                         ),
-                        //yes button
+                        //nút đồng ý 
                         TextButton(
                           onPressed: () {
                             Navigator.pop(context);
                             restaurant.clearCart();
                           },
-                          child: Text("Yes"),
+                          child: Text("Đồng ý"),
                         ),
                       ],
                     ),
@@ -54,24 +54,24 @@ class CartPage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              //list of cart
+              //danh sách giỏ hàng
               Expanded(
                 child: Column(
                   children: [
                     userCart.isEmpty
                         ? const Expanded(
                             child: Center(
-                              child: Text("Cart is empty.."),
+                              child: Text("Giỏ hàng trống ..."),
                             ),
                           )
                         : Expanded(
                             child: ListView.builder(
                               itemCount: userCart.length,
                               itemBuilder: (context, index) {
-                                //get individual cart item
+                                //lấy từng món ăn trong giỏ hàng
                                 final cartItem = userCart[index];
 
-                                //return cart  title UI
+                                //  trả về giao diện món ăn đó
                                 return MyCartTile(cartItem: cartItem);
                               },
                             ),
@@ -80,7 +80,7 @@ class CartPage extends StatelessWidget {
                 ),
               ),
 
-              //button to pay
+              //nút thanh toán
               MyButton(
                   onTap: () => Navigator.push(
                         context,
@@ -88,7 +88,7 @@ class CartPage extends StatelessWidget {
                           builder: (context) => const PaymentPage(),
                         ),
                       ),
-                  text: "Go to checkout"),
+                  text: "Đi đến thanh toán"),
 
               const SizedBox(height: 25),
             ],

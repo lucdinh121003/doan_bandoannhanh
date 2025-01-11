@@ -10,10 +10,10 @@ class LoginOrRegister extends StatefulWidget {
 }
 
 class _LoginOrRegisterState extends State<LoginOrRegister> {
-  // Initially, show login page
+  // mặc định hiển thị trang đăng nhập
   bool showLoginPage = true;
 
-  // Toggle between login and register page
+  // Chuyển đổi giữa trang đăng nhập và đăng ký
   void togglePages() {
     setState(() {
       showLoginPage = !showLoginPage;

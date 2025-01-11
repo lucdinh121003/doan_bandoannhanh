@@ -12,7 +12,7 @@ class FoodPage extends StatefulWidget {
     super.key,
     required this.food,
   }) {
-    // initialize selected addons to be false
+    // khởi tạo các món ăn thêm đã chọn là sai
     for (Addon addon in food.availableAddons) {
       selectedAddons[addon] = false;
     }
@@ -23,12 +23,12 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
-  //method to add to cart
+  //phương pháp thêm vào giỏ hàng
   void addToCart(Food food, Map<Addon, bool> selectedAddons) {
-    //close the current food page to go back to menu
+    //đóng trang
     Navigator.pop(context);
 
-    //format the selected addons
+    //danh sách các addon đã chọn
     List<Addon> currentlySelectedAddons = [];
     for (Addon addon in widget.food.availableAddons) {
       if (widget.selectedAddons[addon] == true) {
@@ -36,7 +36,7 @@ class _FoodPageState extends State<FoodPage> {
       }
     }
 
-    //add to cart
+    //thêm vào giỏ hàng
     context.read<Restaurant>().addToCart(food, currentlySelectedAddons);
   }
 
@@ -44,12 +44,12 @@ class _FoodPageState extends State<FoodPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        //scaffold UI
+        //giao diện món ăn
         Scaffold(
           body: SingleChildScrollView(
             child: Column(
               children: [
-                // food imgage
+                // ảnh món ăn
                 Image.asset(widget.food.imagePath),
 
                 Padding(
@@ -57,7 +57,7 @@ class _FoodPageState extends State<FoodPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //food name
+                      //tên món ăn
                       Text(
                         widget.food.name,
                         style: const TextStyle(
@@ -66,7 +66,7 @@ class _FoodPageState extends State<FoodPage> {
                         ),
                       ),
 
-                      //food description
+                      //giá món ăn
                       Text(
                         widget.food.description,
                         style: TextStyle(
@@ -74,9 +74,9 @@ class _FoodPageState extends State<FoodPage> {
                             color: Theme.of(context).colorScheme.primary),
                       ),
 
-                      //food price
+                      //giá món ăn
                       Text(
-                        '\$${widget.food.price}',
+                        '${(widget.food.price).toInt()} VNĐ',
                         style: TextStyle(
                             fontSize: 16,
                             color: Theme.of(context).colorScheme.primary),
@@ -84,7 +84,7 @@ class _FoodPageState extends State<FoodPage> {
 
                       const SizedBox(height: 10),
 
-                      //food description
+                      //mô tả món ăn
                       Text(
                         widget.food.description,
                       ),
@@ -95,9 +95,9 @@ class _FoodPageState extends State<FoodPage> {
 
                       const SizedBox(height: 10),
 
-                      //addons
+                      //tiêu đề addon
                       Text(
-                        "Add-ons",
+                        "Món ăn kèm",
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.inversePrimary,
                           fontSize: 16,
@@ -117,15 +117,15 @@ class _FoodPageState extends State<FoodPage> {
                           padding: EdgeInsets.zero,
                           itemCount: widget.food.availableAddons.length,
                           itemBuilder: (context, index) {
-                            // get individual addon
+                            //lấy addon
                             Addon addon = widget.food.availableAddons[index];
 
-                            //return check box UI
+                            //giao diện addon
 
                             return CheckboxListTile(
                               title: Text(addon.name),
                               subtitle: Text(
-                                '\$${addon.price}',
+                                '${(addon.price).toInt()} VNĐ',
                                 style: TextStyle(
                                   color: Theme.of(context).colorScheme.primary,
                                 ),
@@ -144,10 +144,10 @@ class _FoodPageState extends State<FoodPage> {
                   ),
                 ),
 
-                //button => add to cart
+                //nút thêm vào giỏ hàng
                 MyButton(
                   onTap: () => addToCart(widget.food, widget.selectedAddons),
-                  text: "Add to cart",
+                  text: "Thêm vào giỏ",
                 ),
 
                 const SizedBox(height: 25),
@@ -156,7 +156,7 @@ class _FoodPageState extends State<FoodPage> {
           ),
         ),
 
-        // back button
+        // nút back
         SafeArea(
           child: Opacity(
             opacity: 0.6,

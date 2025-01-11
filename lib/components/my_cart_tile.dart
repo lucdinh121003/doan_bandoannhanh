@@ -25,7 +25,7 @@ class MyCartTile extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //food image
+                  //ảnh món ăn
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
@@ -36,40 +36,40 @@ class MyCartTile extends StatelessWidget {
                   ),
 
                   const SizedBox(width: 10),
-                  //name and price
+                  //tên món ăn và giá
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      //food name
+                      //tên món ăn
                       Text(cartItem.food.name),
 
-                      //food price
+                      //giá món ăn
                       Text(
-                        '\$' + cartItem.food.price.toString(),
+                        '${(cartItem.food.price ).toInt()} VNĐ',
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
 
-                        const SizedBox(height:10),
-                        // increment or decrement quantity
-                        QuantitySelector(
-                          quantity: cartItem.quantity,
-                          food: cartItem.food,
-                          onDecrement: () {
-                            Restaurant.removeFromCart(cartItem);
-                          },
-                          onIncremenent: () {
-                            Restaurant.addToCart(
-                                cartItem.food, cartItem.selectedAddons);
-                          },
-                        )
+                      const SizedBox(height: 10),
+                      //số lượng
+                      QuantitySelector(
+                        quantity: cartItem.quantity,
+                        food: cartItem.food,
+                        onDecrement: () {
+                          Restaurant.removeFromCart(cartItem);
+                        },
+                        onIncremenent: () {
+                          Restaurant.addToCart(
+                              cartItem.food, cartItem.selectedAddons);
+                        },
+                      )
                     ],
-                  ),                
+                  ),
                 ],
               ),
             ),
 
-            // addons
+            // đồ ăn thêm
             SizedBox(
               height: cartItem.selectedAddons.isEmpty ? 0 : 60,
               child: ListView(
@@ -82,11 +82,11 @@ class MyCartTile extends StatelessWidget {
                         child: FilterChip(
                           label: Row(
                             children: [
-                              //addon name
+                              //tên món đi kèm
                               Text(addon.name),
 
-                              //addon price
-                              Text('(\$${addon.price})'),
+                              //giá
+                              Text('(${(addon.price).toInt()} VNĐ)'),
                             ],
                           ),
                           shape: StadiumBorder(

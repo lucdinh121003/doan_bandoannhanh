@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-//get instance of firebase auth
+//lấy ví dụ về xác thực firebase
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-//get current user
+//  có được người dùng hiện tại
   User? getCurrentUser() {
     return _firebaseAuth.currentUser;
   }
 
-//sign in
+//đăng nhập
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
-    // try sign user in
+    // thử đăng nhập
     try {
       UserCredential userCredential = 
       await _firebaseAuth.signInWithEmailAndPassword(
@@ -20,16 +20,16 @@ class AuthService {
       );
       return userCredential;
     }
-    //catch any errors
+    // nếu có lỗi, hãy ném ra ngoại lệ
     on FirebaseAuthException catch (e) {
       throw Exception(e.code);
     }
   }
 
-  //sign up
+  // đăng ký
   Future<UserCredential> signUpWithEmailPassword(
       String email, password) async {
-    // try sign user up
+    // thử đăng ký
     try {
       UserCredential userCredential = 
       await _firebaseAuth.createUserWithEmailAndPassword(
@@ -43,7 +43,7 @@ class AuthService {
     }
   }
 
-  // sign out
+  // đăng xuất
   Future<void> signOut() async {
     return await _firebaseAuth.signOut();
   }

@@ -35,7 +35,7 @@ class QuantitySelector extends StatelessWidget {
             ),
           ),
 
-          //quantity count
+          //đếm số lượng
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: SizedBox(
@@ -48,7 +48,7 @@ class QuantitySelector extends StatelessWidget {
             ),
           ),
 
-          //increase  button
+          //nút tăng sl
           GestureDetector(
             onTap: onIncremenent,
             child: Icon(

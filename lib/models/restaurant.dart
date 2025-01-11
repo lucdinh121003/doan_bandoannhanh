@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
@@ -9,17 +8,17 @@ import 'cart_item.dart';
 class Restaurant extends ChangeNotifier {
   // danh sách thực đơn
   final List<Food> _menu = [
-    // đồ ăn 
-   Food(
+    // đồ ăn
+    Food(
       name: "Bánh mì",
       description: "Bánh mì là bánh giòn mềm, nhân đa dạng hấp dẫn.",
       imagePath: "lib/images/foods/banhmi.webp",
       price: 15000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Thập cẩm", price: 15000),      
-        Addon(name: "1 trứng", price: 20000),
-        Addon(name: "2 trứng", price: 25000),
+        Addon(name: "Thêm pate", price: 1500),
+        Addon(name: "Thêm trứng", price: 2000),
+        Addon(name: "Thêm rau", price: 2500),
       ],
     ),
 
@@ -30,9 +29,9 @@ class Restaurant extends ChangeNotifier {
       price: 25000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Combo", price: 25000),
-        Addon(name: "Combo 2", price: 49999),
-        Addon(name: "Combo 3", price: 99999),
+        Addon(name: "Thêm tương", price: 2500),
+        Addon(name: "Thêm sốt", price: 4999),
+        Addon(name: "Thêm giấy", price: 9999),
       ],
     ),
 
@@ -43,9 +42,9 @@ class Restaurant extends ChangeNotifier {
       price: 10000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Cá hồi", price: 10000),
-        Addon(name: "Cá ngừ", price: 15000),
-        Addon(name: "Thập cẩm", price: 20000),
+        Addon(name: "Thêm cơm", price: 1000),
+        Addon(name: "Thêm rong biển", price: 1500),
+        Addon(name: "Thêm rau", price: 2000),
       ],
     ),
 
@@ -56,12 +55,12 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.foods,
       availableAddons: [
-        Addon(name: "Combo 1", price: 15000),
-        Addon(name: "Combo 2", price: 25000),
-        Addon(name: "Combo 3", price: 35000),
+        Addon(name: "Thêm tương", price: 1500),
+        Addon(name: "Thêm khoai", price: 2500),
+        Addon(name: "Thêm giấy", price: 3500),
       ],
     ),
-    // nc uong 
+    // nc uong
 
     Food(
       name: "7up",
@@ -70,9 +69,9 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tẩy", price: 15000),  
-        Addon(name: "2 tẩy", price: 17000),
-        Addon(name: "3 tẩy", price: 20000),
+        Addon(name: "Thêm đá", price: 1500),
+        Addon(name: "Thêm ly", price: 1700),
+        Addon(name: "Thêm nước", price: 2000),
       ],
     ),
 
@@ -83,9 +82,9 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tẩy", price: 15000),
-        Addon(name: "2 tẩy", price: 17000),
-        Addon(name: "3 tẩy", price: 20000),
+        Addon(name: "Thêm đá", price: 1500),
+        Addon(name: "Thêm ly", price: 1700),
+        Addon(name: "Thêm nước", price: 2000),
       ],
     ),
 
@@ -96,35 +95,34 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "1 tẩy", price: 15000),
-        Addon(name: "2 tẩy", price: 17000),
-        Addon(name: "3 tẩy", price: 20000),  
+        Addon(name: "Thêm đá", price: 1500),
+        Addon(name: "Thêm ly", price: 1700),
+        Addon(name: "Thêm nước", price: 2000),
       ],
     ),
 
     Food(
       name: "Chanh day",
-      description: "Quả chua ngọt, hương thơm nồng, giải nhiệt tốt.",
+      description: "Quả Thêm đá ngọt, hương thơm nồng, giải nhiệt tốt.",
       imagePath: "lib/images/drinks/chanhday.png",
       price: 20000,
       category: FoodCategory.drinks,
       availableAddons: [
-        Addon(name: "Chua", price: 20000),
-        Addon(name: "Chua vừa", price: 25000),
-        Addon(name: "Ngọt", price: 30000),
+        Addon(name: "Thêm đá", price: 2000),
+        Addon(name: "Thêm chanh", price: 2500),
+        Addon(name: "Thêm ly", price: 3000),
       ],
     ),
-    // salad 
+    // salad
     Food(
       name: "Cá hồi ",
-      description: "Cá hồi tươi, rau xanh, sốt chua ngọt hòa quyện.",
+      description: "Cá hồi tươi, rau xanh, sốt Thêm đá ngọt hòa quyện.",
       imagePath: "lib/images/salads/cahoi.webp",
       price: 25000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 25000),
-        Addon(name: "Vừa", price: 30000),
-        Addon(name: "Lớn", price: 35000),
+        Addon(name: "Thêm rau", price: 2500),
+        Addon(name: "Thêm cá", price: 3000),
       ],
     ),
 
@@ -135,9 +133,8 @@ class Restaurant extends ChangeNotifier {
       price: 25000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 25000),
-        Addon(name: "Vừa", price: 30000),
-        Addon(name: "Lớn", price: 35000),
+        Addon(name: "Thêm rau", price: 2500),
+        Addon(name: "Thêm cá", price: 3000),
       ],
     ),
 
@@ -148,9 +145,8 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 15000),
-        Addon(name: "Vừa", price: 20000),  
-        Addon(name: "Lớn", price: 25000),  
+        Addon(name: "Thêm rau", price: 1500),
+        Addon(name: "Thêm quả", price: 2000),
       ],
     ),
 
@@ -161,9 +157,8 @@ class Restaurant extends ChangeNotifier {
       price: 30000,
       category: FoodCategory.salads,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 30000),
-        Addon(name: "Vừa", price: 35000),  
-        Addon(name: "Lớn", price: 40000),
+        Addon(name: "Thêm rau", price: 3000),
+        Addon(name: "Thêm cá", price: 3500),
       ],
     ),
     // món tráng miệng
@@ -171,25 +166,21 @@ class Restaurant extends ChangeNotifier {
       name: "Kem chuối",
       description: "Kem chuối ngọt béo, thêm lạc giòn bùi thơm.",
       imagePath: "lib/images/desserts/kemchuoi.webp",
-      price: 10000,  
+      price: 10000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 10000),
-        Addon(name: "Vừa", price: 13000),
-        Addon(name: "Lớn", price: 15000),
+        Addon(name: "Thêm kem", price: 1000),
       ],
     ),
 
     Food(
       name: "Kem dâu",
-      description: "Kem dâu hồng, chua ngọt nhẹ, mùi thơm hấp dẫn.",
+      description: "Kem dâu hồng, Thêm đá ngọt nhẹ, mùi thơm hấp dẫn.",
       imagePath: "lib/images/desserts/kemdau.webp",
       price: 17000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 17000),
-        Addon(name: "Vừa", price: 20000),
-        Addon(name: "Lớn", price: 25000),
+        Addon(name: "Thêm kem", price: 1700),
       ],
     ),
 
@@ -200,9 +191,7 @@ class Restaurant extends ChangeNotifier {
       price: 20000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 20000),
-        Addon(name: "Vừa", price: 25000),
-        Addon(name: "Lớn", price: 30000),
+        Addon(name: "Thêm kem", price: 2000),
       ],
     ),
 
@@ -213,9 +202,7 @@ class Restaurant extends ChangeNotifier {
       price: 15000,
       category: FoodCategory.desserts,
       availableAddons: [
-        Addon(name: "Nhỏ", price: 15000),
-        Addon(name: "Vừa", price: 20000),
-        Addon(name: "Lớn", price: 25000),
+        Addon(name: "Thêm kem", price: 1500),
       ],
     ),
   ];
@@ -225,16 +212,12 @@ class Restaurant extends ChangeNotifier {
 
   // địa chỉ giao hàng (người dùng có thể thay đổi/cập nhật)
   String _deliveryAddress = 'Q9 Thủ Đức TP.Hồ Chí Minh';
-  
-  
+
   List<Food> get menu => _menu;
   List<CartItem> get cart => _cart;
   String get deliveryAddress => _deliveryAddress;
 
-
-  
-
-  // thêm vào giỏ 
+  // thêm vào giỏ
   void addToCart(Food food, List<Addon> selectedAddons) {
     //xem đã có mặt hàng nào trong giỏ hàng có cùng loại thực phẩm đã chọn chưa
     CartItem? cartItem = _cart.firstWhereOrNull((item) {
@@ -263,7 +246,7 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
-  // xóa món trong giỏ hàng 
+  // xóa món trong giỏ hàng
   void removeFromCart(CartItem cartItem) {
     int cartIndex = _cart.indexOf(cartItem);
 
@@ -312,51 +295,53 @@ class Restaurant extends ChangeNotifier {
   }
 
   //cập nhật địa chỉ giao hàng
-  void updateDeliveryAddress(String newAddress){
+  void updateDeliveryAddress(String newAddress) {
     _deliveryAddress = newAddress;
     notifyListeners();
   }
 
   //tạo biên lai
-  String displayCartReceipt(){
+  String displayCartReceipt() {
     final receipt = StringBuffer();
-    receipt.writeln("Here's your receipt.");
+    receipt.writeln("Hóa đơn của bạn:");
     receipt.writeln();
 
-    // định dạng ngày 
-    String formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
-
-    receipt.writeln(formattedDate);
+    // định dạng ngày
+    String formattedDate =
+        DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
+    receipt.writeln("Ngày: $formattedDate");
     receipt.writeln();
-    receipt.writeln("-------------");
+    receipt.writeln("-------------------");
 
-    for (final cartItem in _cart){
-      receipt.writeln("${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
-      if(cartItem.selectedAddons.isNotEmpty){
-        receipt.writeln(" Add-ons: ${_formatAddons((cartItem.selectedAddons))}");
+    for (final cartItem in _cart) {
+      receipt.writeln(
+          "${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
+      if (cartItem.selectedAddons.isNotEmpty) {
+        receipt.writeln("   Thêm: ${_formatAddons(cartItem.selectedAddons)}");
       }
       receipt.writeln();
     }
 
-    receipt.writeln("-------------");
+    receipt.writeln("-------------------");
     receipt.writeln();
-    receipt.writeln("Total Items: ${getTotalItemCount()}");
-    receipt.writeln("Total Price: ${_formatPrice(getTotalPrice())}");
+    receipt.writeln("Tổng số món: ${getTotalItemCount()}");
+    receipt.writeln("Tổng tiền: ${_formatPrice(getTotalPrice())}");
     receipt.writeln();
-    receipt.writeln("Delivering to: $deliveryAddress" );
+    receipt.writeln("Địa chỉ giao hàng: $deliveryAddress");
 
     return receipt.toString();
   }
+
   // định dạng giá trị double thành tiền
-  String _formatPrice(double price){
-    return "\$${price.toStringAsFixed(2)}" ;
+  // định dạng giá trị double thành tiền (VNĐ)
+  String _formatPrice(double price) {
+    return "${(price).toInt()} VNĐ";
   }
 
-  // định dạng danh sách các tiện ích bổ sung thành một chuỗi tóm tắt
-  String _formatAddons(List<Addon> addons){
+  // định dạng danh sách các tiện ích bổ sung thành một chuỗi tóm tắt (VNĐ)
+  String _formatAddons(List<Addon> addons) {
     return addons
-                .map((addon) => "${addon.name} (${_formatPrice(addon.price)})")
-                .join(", ");
+        .map((addon) => "${addon.name} (${_formatPrice(addon.price)})")
+        .join(", ");
   }
-
 }

@@ -1,8 +1,9 @@
 import 'package:doan_bandoannhanh/components/my_receipt.dart';
 import 'package:doan_bandoannhanh/models/restaurant.dart';
-import 'package:doan_bandoannhanh/services/auth/database/firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../services/database/firestore.dart';
 
 class DeliveryProgressPage extends StatefulWidget {
   const DeliveryProgressPage({super.key});
@@ -13,7 +14,7 @@ class DeliveryProgressPage extends StatefulWidget {
 
 class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
 
-  // get access to db
+  // tạo firestore service
   FirestoreService db = FirestoreService();
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
     );
   }
 
-  // Custom Bottom Nav Bar - Message / Call delivery driver
+  // tạo bottom navigation bar
   Widget _buildBottomNavBar(BuildContext context){
     return Container(
       height: 100,
@@ -52,7 +53,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
         padding: const EdgeInsets.all(25),
         child: Row(
           children: [
-            // profile pic of driver
+            // ảnh tài xế
             Container(decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.background,
               shape: BoxShape.circle,           
@@ -65,7 +66,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
             ),
 
             const SizedBox(width: 10),
-            // driver details
+            // chi tiết tài xế
             Column( crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -76,7 +77,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
                     color: Theme.of(context).colorScheme.inversePrimary,
                     ),
                   ),
-                Text("Driver",
+                Text("Tài xế",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     ),                  
@@ -86,7 +87,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
             const Spacer(),
             Row(
               children: [
-                // message button
+                // nút message
                 Container(decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
                   shape: BoxShape.circle,           
@@ -99,7 +100,7 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
                 ),
 
                 const SizedBox(width: 10),
-                // call button
+                // nút gọi
                 Container(decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.background,
                   shape: BoxShape.circle,           

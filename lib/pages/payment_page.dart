@@ -24,32 +24,32 @@ class _PaymentPageState extends State<PaymentPage> {
   bool useBackgroundImage = false;
   bool useFloatingAnimation = true;
 
-  //user wants to pay
+  // nút thanh toán
   void userTappedPay() {
     if (formKey.currentState!.validate()) {
-      //only show dilog if form is valid
+      //chỉ hiển thị dialog nếu biểu mẫu hợp lệ
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text("Comfilm payment"),
+          title: const Text("Xác nhận thanh toán"),
           content: SingleChildScrollView(
             child: ListBody(
               children: [
-                Text("Card Number: $cardNumber"),
-                Text("Expiry Date: $expiryDate"),
-                Text("Card Holder Name: $cardHolderName"),
+                Text("Số thẻ: $cardNumber"), 
+                Text("Ngày hết hạn: $expiryDate"),
+                Text("Tên chủ thẻ: $cardHolderName"),
                 Text("CVV: $cvvCode"),
               ],
             ),
           ),
           actions: [
-            //cancel button
+            //nút hủy
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
+              child: const Text("Hủy"),
             ),
 
-            //yes button
+            //nút đồng ý
             TextButton(
               onPressed: () {
                  Navigator.pop(context);
@@ -60,7 +60,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
               );
               },
-              child: const Text("Yes"),
+              child: const Text("Đồng ý"),
             )
           ],
         ),
@@ -110,7 +110,7 @@ class _PaymentPageState extends State<PaymentPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Check out"),
+        title: const Text("Thanh toán"),
       ),
       body: 
       Builder(
@@ -135,7 +135,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       expiryDate: expiryDate,
                       cardHolderName: cardHolderName,
                       cvvCode: cvvCode,
-                      bankName: 'Axis Bank',
+                      bankName: 'HC Bank',
                       frontCardBorder: useGlassMorphism
                           ? null
                           : Border.all(color: Colors.grey),
@@ -173,11 +173,11 @@ class _PaymentPageState extends State<PaymentPage> {
                               expiryDate: expiryDate,
                               inputConfiguration: const InputConfiguration(
                                 cardNumberDecoration: InputDecoration(
-                                  labelText: 'Number',
+                                  labelText: 'Số thẻ',
                                   hintText: 'XXXX XXXX XXXX XXXX',
                                 ),
                                 expiryDateDecoration: InputDecoration(
-                                  labelText: 'Expired Date',
+                                  labelText: 'Ngày hết hạn',
                                   hintText: 'XX/XX',
                                 ),
                                 cvvCodeDecoration: InputDecoration(
@@ -185,7 +185,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                   hintText: 'XXX',
                                 ),
                                 cardHolderDecoration: InputDecoration(
-                                  labelText: 'Card Holder',
+                                  labelText: 'Tên chủ thẻ',
                                 ),
                               ),
                               onCreditCardModelChange: onCreditCardModelChange,
@@ -197,7 +197,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text('Glassmorphism'),
+                                  const Text('Trong suốt'),
                                   const Spacer(),
                                   Switch(
                                     value: useGlassMorphism,
@@ -217,7 +217,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text('Card Image'),
+                                  const Text('Ảnh Card'),
                                   const Spacer(),
                                   Switch(
                                     value: useBackgroundImage,
@@ -237,7 +237,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  const Text('Floating Card'),
+                                  const Text('Thẻ nổi'),
                                   const Spacer(),
                                   Switch(
                                     value: useFloatingAnimation,
@@ -280,7 +280,7 @@ class _PaymentPageState extends State<PaymentPage> {
                                     const EdgeInsets.symmetric(vertical: 15),
                                 alignment: Alignment.center,
                                 child: const Text(
-                                  'Validate',
+                                  'Thanh toán',
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'halter',

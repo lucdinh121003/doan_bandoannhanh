@@ -11,33 +11,33 @@ class MyCurrentLocation extends StatelessWidget {
       context: context,
       builder: (context)=>AlertDialog(
       backgroundColor: Theme.of(context).colorScheme.background,
-      title: const Text('Your location'),
+      title: const Text('Vị trí của bạn'),
       content: TextField(
         controller: textController,
         decoration: const InputDecoration(
-          hintText: 'Enter address...',
+          hintText: 'Nhập địa chỉ...',
         ),
       ),
       actions: [
-        //cancel button
+        //nút hủy
         MaterialButton(
           onPressed: () {
             Navigator.pop(context);
             textController.clear();
           },
-          child: const Text('Cancel'),
+          child: const Text('Hủy'),
         ),
 
-        //save button
+        //Nút lưu
         MaterialButton(
           onPressed: (){
-            // update delivery address
+            //lưu địa chỉ mới
             String newAddress = textController.text;
             context.read<Restaurant>().updateDeliveryAddress(newAddress);
             Navigator.pop(context);
             textController.clear();
           },
-          child: const Text('Save'),
+          child: const Text('Lưu'),
         ),
       ],
     ),
@@ -52,7 +52,7 @@ class MyCurrentLocation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Deliver now',
+            'Giao hàng ngay',
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
           GestureDetector(
@@ -68,7 +68,7 @@ class MyCurrentLocation extends StatelessWidget {
                     ),
                   ),
                 ),                                  
-                //drop down menu
+                //drop down của thực đơn 
                 Icon(Icons.keyboard_arrow_down_rounded),
               ],
             ),

@@ -26,10 +26,10 @@ class PushNotifications {
     );
   }
 
-  // get the fcm device token
+  // nhận mã thông báo thiết bị fcm
   static Future getDeviceToken({int maxRetires = 3}) async {
     try {
-      // get the device fcm token
+      // nhận mã thông báo fcm của thiết bị
       final String? token = await _firebaseMessaging.getToken();
       print("for android device token: $token");
       saveTokenToFirestore(token: token!);
@@ -54,7 +54,7 @@ class PushNotifications {
       await CRUDService.saveUserToken(token!);
       print("save to firestore");
     }
-    // also save if token changes
+    // lưu nếu mã thông báo thay đổi
     _firebaseMessaging.onTokenRefresh.listen((event) async {
       if (isUserLoggedin) {
         await CRUDService.saveUserToken(token!);
@@ -63,9 +63,9 @@ class PushNotifications {
     });
   }
 
-  // initalize local notifications
+  // kích hoạt thông báo cục bộ
   static Future localNotiInit() async {
-    // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
+    // khởi tạo plugin. app_icon cần được thêm dưới dạng tài nguyên có thể vẽ vào dự án chính của Android
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings(
       '@mipmap/ic_launcher',
@@ -84,7 +84,7 @@ class PushNotifications {
             iOS: initializationSettingsDarwin,
             linux: initializationSettingsLinux);
 
-    // request notification permissions for android 13 or above
+    // yêu cầu quyền thông báo cho android 13 trở lên
     _flutterLocalNotificationsPlugin
 
     .resolvePlatformSpecificImplementation<
@@ -96,12 +96,12 @@ class PushNotifications {
         onDidReceiveBackgroundNotificationResponse: onNotificationTap);
   }
 
-  // on tap local notification in foreground
+  // khi chạm vào thông báo cục bộ ở nền trước
   static void onNotificationTap(NotificationResponse notificationResponse) {
     navigatorKey.currentState!.pushNamed("/home");
   }
 
-  // show a simple notification
+  // hiển thị một thông báo đơn giản
   static Future showSimpleNotification(
       {required String title,
       required String body,

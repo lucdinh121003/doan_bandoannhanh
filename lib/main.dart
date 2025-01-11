@@ -23,17 +23,17 @@ void main()  async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform);
 
-  // initialize firebase messaging
+  // khởi tạo tin nhắn firebase
   await PushNotifications.init();
 
-  // initialize local notifications
+  // khởi tạo thông báo cục bộ
   await PushNotifications.localNotiInit();
 
-  // Listen to background notifications
+  // Nghe thông báo nền
   FirebaseMessaging.onBackgroundMessage(_firebaseBackgroundMessage);
 
   
-  // on background notification tapped
+  // Thông báo trên ứng dụng
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
     if (message.notification != null) {
       print("Background Notification Tapped");
@@ -41,7 +41,7 @@ void main()  async {
     }
   });
 
-  // to handle foreground notifications
+  // Thông báo khi ứng dụng đang chạy
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     String payloadData = jsonEncode(message.data);
     print("Got a message in foreground");
@@ -50,7 +50,7 @@ void main()  async {
     }
   });
 
-  // for handling in terminated state
+  // Lấy thông báo khi ứng dụng bị tắt
   final RemoteMessage? message = await FirebaseMessaging.instance.getInitialMessage();
   if (message != null) {
     print("Launched from terminated state");
