@@ -35,7 +35,7 @@ class _PaymentPageState extends State<PaymentPage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: [
-                Text("Số thẻ: $cardNumber"), 
+                Text("Số thẻ: $cardNumber"),
                 Text("Ngày hết hạn: $expiryDate"),
                 Text("Tên chủ thẻ: $cardHolderName"),
                 Text("CVV: $cvvCode"),
@@ -52,13 +52,13 @@ class _PaymentPageState extends State<PaymentPage> {
             //nút đồng ý
             TextButton(
               onPressed: () {
-                 Navigator.pop(context);
-                 Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DeliveryProgressPage(),
-                ),
-              );
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DeliveryProgressPage(),
+                  ),
+                );
               },
               child: const Text("Đồng ý"),
             )
@@ -67,24 +67,26 @@ class _PaymentPageState extends State<PaymentPage> {
       );
     }
   }
-   Glassmorphism? _getGlassmorphismConfig() {
-    if (!useGlassMorphism) {
-      return null;
-    }
 
-    final LinearGradient gradient = LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: <Color>[Colors.grey.withAlpha(50), Colors.grey.withAlpha(50)],
-      stops: const <double>[0.3, 0],
-    );
-
-    return isLightTheme
-        ? Glassmorphism(blurX: 8.0, blurY: 16.0, gradient: gradient)
-        : Glassmorphism.defaultConfig();
+  Glassmorphism? _getGlassmorphismConfig() {
+  if (!useGlassMorphism) {
+    return null;
   }
 
-   void onCreditCardModelChange(CreditCardModel creditCardModel) {
+  return Glassmorphism(
+    blurX: 0.0, // Không làm mờ
+    blurY: 0.0, // Không làm mờ
+    gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: <Color>[const Color.fromARGB(255, 24, 19, 165)],
+      stops: const <double>[0], 
+    ),
+  );
+}
+
+
+  void onCreditCardModelChange(CreditCardModel creditCardModel) {
     setState(() {
       cardNumber = creditCardModel.cardNumber;
       expiryDate = creditCardModel.expiryDate;
@@ -94,7 +96,7 @@ class _PaymentPageState extends State<PaymentPage> {
     });
   }
 
-    void _onValidate() {
+  void _onValidate() {
     if (formKey.currentState?.validate() ?? false) {
       print('valid!');
       userTappedPay();
@@ -112,194 +114,153 @@ class _PaymentPageState extends State<PaymentPage> {
         foregroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text("Thanh toán"),
       ),
-      body: 
-      Builder(
-          builder: (BuildContext context) {
-            return Container(            
-              child: SafeArea(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () => setState(() {
-                        isLightTheme = !isLightTheme;
-                      }),
-                      icon: Icon(
-                        isLightTheme ? Icons.light_mode : Icons.dark_mode,
+      body: Builder(
+        builder: (BuildContext context) {
+          return Container(
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () => setState(() {
+                      isLightTheme = !isLightTheme;
+                    }),
+                    icon: Icon(
+                      isLightTheme ? Icons.light_mode : Icons.dark_mode,
+                    ),
+                  ),
+                  CreditCardWidget(
+                    enableFloatingCard: useFloatingAnimation,
+                    glassmorphismConfig: _getGlassmorphismConfig(),
+                    cardNumber: cardNumber,
+                    expiryDate: expiryDate,
+                    cardHolderName: cardHolderName,
+                    cvvCode: cvvCode,
+                    bankName: 'HC Bank',
+                    frontCardBorder: useGlassMorphism
+                        ? null
+                        : Border.all(color: Colors.grey),
+                    backCardBorder: useGlassMorphism
+                        ? null
+                        : Border.all(color: Colors.grey),
+                    showBackView: isCvvFocused,
+                    obscureCardNumber: true,
+                    obscureCardCvv: true,
+                    isHolderNameVisible: true,
+                    cardBgColor: useGlassMorphism
+                        ? Colors.blue
+                        : isLightTheme
+                            ? Colors.white
+                            : Colors.black,
+                    backgroundImage: useBackgroundImage ? null : null,
+                    isSwipeGestureEnabled: true,
+                    onCreditCardWidgetChange:
+                        (CreditCardBrand creditCardBrand) {},
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: <Widget>[
+                          CreditCardForm(
+                            formKey: formKey,
+                            obscureCvv: true,
+                            obscureNumber: true,
+                            cardNumber: cardNumber,
+                            cvvCode: cvvCode,
+                            isHolderNameVisible: true,
+                            isCardNumberVisible: true,
+                            isExpiryDateVisible: true,
+                            cardHolderName: cardHolderName,
+                            expiryDate: expiryDate,
+                            inputConfiguration: const InputConfiguration(
+                              cardNumberDecoration: InputDecoration(
+                                labelText: 'Số thẻ',
+                                hintText: 'XXXX XXXX XXXX XXXX',
+                              ),
+                              expiryDateDecoration: InputDecoration(
+                                labelText: 'Ngày hết hạn',
+                                hintText: 'XX/XX',
+                              ),
+                              cvvCodeDecoration: InputDecoration(
+                                labelText: 'CVV',
+                                hintText: 'XXX',
+                              ),
+                              cardHolderDecoration: InputDecoration(
+                                labelText: 'Tên chủ thẻ',
+                              ),
+                            ),
+                            onCreditCardModelChange: onCreditCardModelChange,
+                          ),
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Text(useGlassMorphism ? 'Màu xanh' : 'Màu đen'),
+                                const Spacer(),
+                                Switch(
+                                  value: useGlassMorphism,
+                                  inactiveTrackColor: Colors.grey,
+                                  activeColor: Colors.white,
+                                  activeTrackColor:
+                                      const Color.fromARGB(255, 50, 69, 139),
+                                  onChanged: (bool value) => setState(() {
+                                    useGlassMorphism = value;
+                                  }),
+                                ),
+                              ],
+                            ),
+                          ),
+                          
+                          const SizedBox(height: 20),
+                          GestureDetector(
+                            onTap: _onValidate,
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
+                              decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: <Color>[
+                                    Color(0xFFB58D67),
+                                    Color(0xFFE5D1B2),
+                                    Color(0xFFF9EED2),
+                                    Color(0xFFEFEFED),
+                                    Color(0xFFF9EED2),
+                                    Color(0xFFB58D67),
+                                  ],
+                                  begin: Alignment(-1, -4),
+                                  end: Alignment(1, 4),
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Thanh toán',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'halter',
+                                  fontSize: 14,
+                                  package: 'flutter_credit_card',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    CreditCardWidget(
-                      enableFloatingCard: useFloatingAnimation,
-                      glassmorphismConfig: _getGlassmorphismConfig(),
-                      cardNumber: cardNumber,
-                      expiryDate: expiryDate,
-                      cardHolderName: cardHolderName,
-                      cvvCode: cvvCode,
-                      bankName: 'HC Bank',
-                      frontCardBorder: useGlassMorphism
-                          ? null
-                          : Border.all(color: Colors.grey),
-                      backCardBorder: useGlassMorphism
-                          ? null
-                          : Border.all(color: Colors.grey),
-                      showBackView: isCvvFocused,
-                      obscureCardNumber: true,
-                      obscureCardCvv: true,
-                      isHolderNameVisible: true,
-                      cardBgColor: isLightTheme
-                          ? Colors.white
-                          : Colors.black,
-                      backgroundImage:
-                          useBackgroundImage ? null : null,
-                      isSwipeGestureEnabled: true,
-                      onCreditCardWidgetChange:
-                          (CreditCardBrand creditCardBrand) {},
-                    
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: <Widget>[
-                            CreditCardForm(
-                              formKey: formKey,
-                              obscureCvv: true,
-                              obscureNumber: true,
-                              cardNumber: cardNumber,
-                              cvvCode: cvvCode,
-                              isHolderNameVisible: true,
-                              isCardNumberVisible: true,
-                              isExpiryDateVisible: true,
-                              cardHolderName: cardHolderName,
-                              expiryDate: expiryDate,
-                              inputConfiguration: const InputConfiguration(
-                                cardNumberDecoration: InputDecoration(
-                                  labelText: 'Số thẻ',
-                                  hintText: 'XXXX XXXX XXXX XXXX',
-                                ),
-                                expiryDateDecoration: InputDecoration(
-                                  labelText: 'Ngày hết hạn',
-                                  hintText: 'XX/XX',
-                                ),
-                                cvvCodeDecoration: InputDecoration(
-                                  labelText: 'CVV',
-                                  hintText: 'XXX',
-                                ),
-                                cardHolderDecoration: InputDecoration(
-                                  labelText: 'Tên chủ thẻ',
-                                ),
-                              ),
-                              onCreditCardModelChange: onCreditCardModelChange,
-                            ),
-                            const SizedBox(height: 20),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  const Text('Trong suốt'),
-                                  const Spacer(),
-                                  Switch(
-                                    value: useGlassMorphism,
-                                    inactiveTrackColor: Colors.grey,
-                                    activeColor: Colors.white,
-                                    activeTrackColor:Color(0xFFE5D1B2),
-                                    onChanged: (bool value) => setState(() {
-                                      useGlassMorphism = value;
-                                    }),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  const Text('Ảnh Card'),
-                                  const Spacer(),
-                                  Switch(
-                                    value: useBackgroundImage,
-                                    inactiveTrackColor: Colors.grey,
-                                    activeColor: Colors.white,
-                                    activeTrackColor: Color(0xFFE5D1B2),
-                                    onChanged: (bool value) => setState(() {
-                                      useBackgroundImage = value;
-                                    }),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  const Text('Thẻ nổi'),
-                                  const Spacer(),
-                                  Switch(
-                                    value: useFloatingAnimation,
-                                    inactiveTrackColor: Colors.grey,
-                                    activeColor: Colors.white,
-                                    activeTrackColor: Color(0xFFE5D1B2),
-                                    onChanged: (bool value) => setState(() {
-                                      useFloatingAnimation = value;
-                                    }),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                            GestureDetector(
-                              onTap: _onValidate,
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 8,
-                                ),
-                                decoration: const BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: <Color>[
-                                      Color(0xFFB58D67),
-                                      Color(0xFFE5D1B2),
-                                      Color(0xFFF9EED2),
-                                      Color(0xFFEFEFED),
-                                      Color(0xFFF9EED2),
-                                      Color(0xFFB58D67),                                      
-                                    ],
-                                    begin: Alignment(-1, -4),
-                                    end: Alignment(1, 4),
-                                  ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(8),
-                                  ),
-                                ),
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15),
-                                alignment: Alignment.center,
-                                child: const Text(
-                                  'Thanh toán',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'halter',
-                                    fontSize: 14,
-                                    package: 'flutter_credit_card',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
